@@ -4,7 +4,6 @@ import {useState} from 'react'
 import {
   GestureRecognizer,
   FilesetResolver,
-  DrawingUtils
 } from "@mediapipe/tasks-vision";
 import Image from 'next/image'
 import emergencyButton from './emergency-stop-button-red-warning-press-vector-31047051.jpg'
@@ -26,7 +25,7 @@ export default function home() {
       }
       console.log(cams)
       for (let camCount = 0; camCount < cams.length; camCount++) {
-        mediaDevices.getUserMedia({video: {deviceId: {exact: cams[camCount]}}}).then((stream) => {
+        mediaDevices.getUserMedia({video: {deviceId: {ideal: cams[camCount]}}}).then((stream) => {
           video.srcObject = stream
           video.addEventListener("loadedmetadata", () => {
             predictWebcam()
@@ -82,7 +81,7 @@ export default function home() {
               flag = false
             }, 1000);
           }
-          console.log(results)
+          console.log(results.gestures[0][0])
           if (results.gestures[0][0].categoryName === 'Closed_Fist' && flag) {
             console.log("HELP")
             alert('Gesture Detected. Help Called')
